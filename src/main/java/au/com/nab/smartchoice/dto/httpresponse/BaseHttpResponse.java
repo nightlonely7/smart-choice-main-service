@@ -14,10 +14,10 @@ public class BaseHttpResponse<DataType> {
 
     @JsonProperty("data")
     private DataType data;
-
-    @JsonProperty("metadata")
-    private String metadata;
-
-    @JsonProperty("error")
-    private String error;
+//
+//    @JsonProperty("metadata")
+//    private String metadata;
+//
+//    @JsonProperty("error")
+//    private String error;
 }
