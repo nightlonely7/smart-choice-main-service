@@ -9,21 +9,18 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "product")
+@Table(name = "product_detail")
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-public class ProductEntity extends BaseEntity {
+public class ProductDetailEntity extends BaseEntity {
 
     @Column(name = "product_id", unique = true)
     private String productId;
 
-    @Column(name = "product_name")
-    private String productName;
+    @Column(name = "html")
+    private String html;
 
-    @Column(name = "category_id")
-    private String categoryId;
-
-    @Column(name = "img_url")
-    private String imgUrl;
+    @Column(name = "attributes")
+    private String attributes;
 }
