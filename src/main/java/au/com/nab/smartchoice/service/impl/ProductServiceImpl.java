@@ -11,7 +11,7 @@ import au.com.nab.smartchoice.dto.model.ProductDetailModel;
 import au.com.nab.smartchoice.dto.model.ProductModel;
 import au.com.nab.smartchoice.dto.model.ProductPriceModel;
 import au.com.nab.smartchoice.dto.other.ProductSearch;
-import au.com.nab.smartchoice.feignclient.MsProductPriceClient;
+import au.com.nab.smartchoice.feignclient.ProductPriceServiceClient;
 import au.com.nab.smartchoice.repository.ProductDetailRepository;
 import au.com.nab.smartchoice.repository.ProductRepository;
 import au.com.nab.smartchoice.service.ProductService;
@@ -24,7 +24,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -42,7 +41,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductDetailMapper productDetailMapper;
     private final ProductPriceMapper productPriceMapper;
     private final ObjectMapper objectMapper;
-    private final MsProductPriceClient msProductPriceClient;
+    private final ProductPriceServiceClient productPriceServiceClient;
 
     @Override
     public Page<ProductModel> getProductPage(ProductSearch productSearch, Pageable pageable) {
@@ -70,7 +69,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<ProductPriceModel> getProductPrice(String productId) {
-        ResponseEntity<GetProductPriceHttpReception> responseEntity = msProductPriceClient.getProductPrice(productId);
+        ResponseEntity<GetProductPriceHttpReception> responseEntity = productPriceServiceClient.getProductPrice(productId);
         GetProductPriceHttpReception getProductPriceHttpReception = responseEntity.getBody();
         GetProductPriceDataHttpReception getProductPriceDataHttpReception = getProductPriceHttpReception.getData();
         List<ProductPriceHttpReception> productPriceHttpReceptionList = getProductPriceDataHttpReception.getProductPriceList();

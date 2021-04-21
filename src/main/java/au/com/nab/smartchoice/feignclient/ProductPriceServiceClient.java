@@ -6,8 +6,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@FeignClient(contextId = "ms-product-price", name = "ms-product-price")
-public interface MsProductPriceClient {
+@FeignClient(contextId = "product-price-service", name = "product-price-service", url = "localhost:8081")
+public interface ProductPriceServiceClient {
+
     @GetMapping(path = "/product-prices")
-    ResponseEntity<GetProductPriceHttpReception> getProductPrice(@RequestParam("product-id") String productId);
+    ResponseEntity<GetProductPriceHttpReception> getProductPrice(@RequestParam("productTypeId") String productTypeId);
 }
