@@ -13,4 +13,5 @@ public interface ProductService {
     Page<ProductModel> getProductPage(ProductSearch productSearch, Pageable pageable);
     ProductModel getProductDetail(String productId);
     List<ProductPriceModel> getProductPrice(String productId);
+    List<String> getSynchronizableProductId();
 }

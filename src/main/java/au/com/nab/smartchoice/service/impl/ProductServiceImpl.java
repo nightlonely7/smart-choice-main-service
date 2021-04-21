@@ -11,6 +11,7 @@ import au.com.nab.smartchoice.dto.model.ProductDetailModel;
 import au.com.nab.smartchoice.dto.model.ProductModel;
 import au.com.nab.smartchoice.dto.model.ProductPriceModel;
 import au.com.nab.smartchoice.dto.other.ProductSearch;
+import au.com.nab.smartchoice.dto.projection.ProductIdProjection;
 import au.com.nab.smartchoice.feignclient.ProductPriceServiceClient;
 import au.com.nab.smartchoice.repository.ProductDetailRepository;
 import au.com.nab.smartchoice.repository.ProductRepository;
@@ -74,5 +75,10 @@ public class ProductServiceImpl implements ProductService {
         GetProductPriceDataHttpReception getProductPriceDataHttpReception = getProductPriceHttpReception.getData();
         List<ProductPriceHttpReception> productPriceHttpReceptionList = getProductPriceDataHttpReception.getProductPriceList();
         return productPriceHttpReceptionList.stream().map(productPriceMapper::receptionToModel).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<String> getSynchronizableProductId() {
+        return productRepository.findAllBySynchronizableTrue().stream().map(ProductIdProjection::getProductId).collect(Collectors.toList());
     }
 }

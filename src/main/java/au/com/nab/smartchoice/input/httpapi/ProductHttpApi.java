@@ -40,4 +40,9 @@ public class ProductHttpApi {
     public ResponseEntity<?> getProductPriceList(@PathVariable("product-id") String productId) {
         return null;
     }
+
+    @GetMapping("/synchronizable")
+    public ResponseEntity<?> getSynchronizableProductId() {
+        return ResponseEntity.ok(productService.getSynchronizableProductId());
+    }
 }

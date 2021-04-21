@@ -26,4 +26,7 @@ public class ProductEntity extends BaseEntity {
 
     @Column(name = "img_url")
     private String imgUrl;
+
+    @Column(name = "synchronizable")
+    private Boolean synchronizable;
 }
