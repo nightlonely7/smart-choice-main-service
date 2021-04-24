@@ -2,12 +2,15 @@ package au.com.nab.smartchoice.dto.mapper;
 
 import au.com.nab.smartchoice.dto.entity.ProductEntity;
 import au.com.nab.smartchoice.dto.model.ProductModel;
+import au.com.nab.smartchoice.dto.response.ProductResponse;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
-@Mapper
+@Mapper(uses = ProductDetailMapper.class)
 public interface ProductMapper {
+
     ProductEntity modelToEntity(ProductModel productModel);
-    @Mapping(source = "productId", target = "productId")
+
     ProductModel entityToModel(ProductEntity productEntity);
+
+    ProductResponse modelToResponse(ProductModel productModel);
 }

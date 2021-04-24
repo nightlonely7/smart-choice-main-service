@@ -1,18 +1,12 @@
 package au.com.nab.smartchoice.service.impl;
 
 import au.com.nab.smartchoice.dto.entity.ProductDetailEntity;
-import au.com.nab.smartchoice.dto.httpreception.GetProductPriceDataHttpReception;
-import au.com.nab.smartchoice.dto.httpreception.GetProductPriceHttpReception;
-import au.com.nab.smartchoice.dto.httpreception.ProductPriceHttpReception;
 import au.com.nab.smartchoice.dto.mapper.ProductDetailMapper;
 import au.com.nab.smartchoice.dto.mapper.ProductMapper;
-import au.com.nab.smartchoice.dto.mapper.ProductPriceMapper;
 import au.com.nab.smartchoice.dto.model.ProductDetailModel;
 import au.com.nab.smartchoice.dto.model.ProductModel;
-import au.com.nab.smartchoice.dto.model.ProductPriceModel;
 import au.com.nab.smartchoice.dto.other.ProductSearch;
 import au.com.nab.smartchoice.dto.projection.ProductIdProjection;
-import au.com.nab.smartchoice.feignclient.ProductPriceServiceClient;
 import au.com.nab.smartchoice.repository.ProductDetailRepository;
 import au.com.nab.smartchoice.repository.ProductRepository;
 import au.com.nab.smartchoice.service.ProductService;
@@ -22,7 +16,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
@@ -40,9 +33,7 @@ public class ProductServiceImpl implements ProductService {
     private final ProductDetailRepository productDetailRepository;
     private final ProductMapper productMapper;
     private final ProductDetailMapper productDetailMapper;
-    private final ProductPriceMapper productPriceMapper;
     private final ObjectMapper objectMapper;
-    private final ProductPriceServiceClient productPriceServiceClient;
 
     @Override
     public Page<ProductModel> getProductPage(ProductSearch productSearch, Pageable pageable) {
@@ -68,14 +59,6 @@ public class ProductServiceImpl implements ProductService {
         return productModel;
     }
 
-    @Override
-    public List<ProductPriceModel> getProductPrice(String productId) {
-        ResponseEntity<GetProductPriceHttpReception> responseEntity = productPriceServiceClient.getProductPrice(productId);
-        GetProductPriceHttpReception getProductPriceHttpReception = responseEntity.getBody();
-        GetProductPriceDataHttpReception getProductPriceDataHttpReception = getProductPriceHttpReception.getData();
-        List<ProductPriceHttpReception> productPriceHttpReceptionList = getProductPriceDataHttpReception.getProductPriceList();
-        return productPriceHttpReceptionList.stream().map(productPriceMapper::receptionToModel).collect(Collectors.toList());
-    }
 
     @Override
     public List<String> getSynchronizableProductId() {

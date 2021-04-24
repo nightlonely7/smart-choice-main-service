@@ -1,10 +1,10 @@
-package au.com.nab.smartchoice.dto.httpresponse;
+package au.com.nab.smartchoice.dto.clientresponse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class BaseHttpResponse<DataType> {
+public class BaseClientResponse<DataType> {
 
     @JsonProperty("code")
     private String code;
@@ -14,10 +14,5 @@ public class BaseHttpResponse<DataType> {
 
     @JsonProperty("data")
     private DataType data;
-//
-//    @JsonProperty("metadata")
-//    private String metadata;
-//
-//    @JsonProperty("error")
-//    private String error;
+
 }

@@ -1,10 +1,10 @@
-package au.com.nab.smartchoice.dto.httpreception;
+package au.com.nab.smartchoice.dto.clientresponse;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 @Data
-public class ProductPriceHttpReception {
+public class ProductPriceClientResponse {
 
     @JsonProperty("product_id")
     private String productId;
