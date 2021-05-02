@@ -1,6 +1,6 @@
 spring:
-  datasource:
-    generate-unique-name: false
+  profiles:
+    active: dev
 #  kafka:
 #    bootstrap-servers: localhost:9092
 #    consumer:

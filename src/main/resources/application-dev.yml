@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: product-service-dev
+  config:
+    import: optional:configserver:http://localhost:8888
+  datasource:
+    generate-unique-name: false
+  cloud:
+    config:
+      label: main
+server:
+  port: 8080
+
+#eureka:
+#  instance:
+#    hostname: localhost
