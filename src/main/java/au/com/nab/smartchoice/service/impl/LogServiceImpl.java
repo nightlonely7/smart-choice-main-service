@@ -1,13 +1,13 @@
 package au.com.nab.smartchoice.service.impl;
 
-//import au.com.nab.smartchoice.configuration.kafka.TopicConfiguration;
+import au.com.nab.smartchoice.configuration.kafka.TopicConfiguration;
 import au.com.nab.smartchoice.dto.kafkamessage.HttpLogKafkaMessage;
 import au.com.nab.smartchoice.service.LogService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-//import org.springframework.kafka.core.KafkaTemplate;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
@@ -18,14 +18,13 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class LogServiceImpl implements LogService {
 
-//    private final KafkaTemplate<String, String> kafkaTemplate;
+    private final KafkaTemplate<String, String> kafkaTemplate;
     private final ObjectMapper objectMapper;
 
     @Override
@@ -58,7 +57,7 @@ public class LogServiceImpl implements LogService {
             e.printStackTrace();
         }
         log.info(httpLogKafkaMessageStr);
-//        kafkaTemplate.send(TopicConfiguration.LOG_TOPIC, httpLogKafkaMessageStr);
+        kafkaTemplate.send(TopicConfiguration.LOG_TOPIC, httpLogKafkaMessageStr);
     }
 
     @Override
@@ -80,6 +79,6 @@ public class LogServiceImpl implements LogService {
             e.printStackTrace();
         }
         log.info(httpLogKafkaMessageStr);
-//        kafkaTemplate.send(TopicConfiguration.LOG_TOPIC, httpLogKafkaMessageStr);
+        kafkaTemplate.send(TopicConfiguration.LOG_TOPIC, httpLogKafkaMessageStr);
     }
 }

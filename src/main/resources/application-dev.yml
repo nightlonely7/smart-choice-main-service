@@ -1,16 +1,19 @@
 spring:
   application:
-    name: product-service-dev
+    name: product-service
   config:
-    import: optional:configserver:http://localhost:8888
+    import: optional:configserver:http://host.docker.internal:8888
   datasource:
     generate-unique-name: false
   cloud:
     config:
       label: main
-server:
-  port: 8080
+#server:
+#  port: 8081
+eureka:
+  client:
+    service-url:
+      defaultZone: http://host.docker.internal:8761/eureka/
+  instance:
+    prefer-ip-address: true
 
-#eureka:
-#  instance:
-#    hostname: localhost
