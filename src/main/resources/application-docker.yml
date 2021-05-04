@@ -1,0 +1,16 @@
+#spring:
+#  application:
+#    name: product-service
+#  config:
+#    import: optional:configserver:http://host.docker.internal:8888
+#  datasource:
+#    generate-unique-name: false
+#  cloud:
+#    config:
+#      label: main
+#      name: product-service-docker
+##server:
+##  port: 8081
+#eureka:
+#  instance:
+#    prefer-ip-address: true
